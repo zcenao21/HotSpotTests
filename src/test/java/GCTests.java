@@ -1,5 +1,3 @@
-package com.will;
-
 import org.junit.Test;
 
 public class GCTests{
@@ -17,5 +15,16 @@ public class GCTests{
     public void testPretenureSizeThreshold(){
         byte[] allocation1;
         allocation1=new byte[4*_1MB];
+    }
+
+    @Test
+    @SuppressWarnings("unused")
+    public void testTenuringThreshold(){
+        byte[] allocation1,allocation2, allocation3;
+        allocation1=new byte[_1MB/4];
+        allocation2=new byte[4*_1MB];
+        allocation3=new byte[4*_1MB];
+        allocation3=null;
+        allocation3=new byte[4*_1MB];
     }
 }
