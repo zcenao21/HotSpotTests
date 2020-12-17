@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+package chap3;
 
 public class FinalizeEscapeGC {
     public static FinalizeEscapeGC SAVE_HOOK = null;
