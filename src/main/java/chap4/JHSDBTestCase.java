@@ -1,8 +1,5 @@
 package chap4;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class JHSDBTestCase {
     private static class ObjectHolder{}
 
@@ -10,12 +7,15 @@ public class JHSDBTestCase {
         static ObjectHolder staticObj=new ObjectHolder();
         ObjectHolder instanceObj=new ObjectHolder();
 
+        void foo(){
+            ObjectHolder localObj=new ObjectHolder();
+
+            System.out.println("done");
+        }
     }
 
     public static void main(String[] args) {
-        List<OOMObject> list=new ArrayList<OOMObject>();
-        while(true){
-            list.add(new OOMObject());
-        }
+        Test test=new JHSDBTestCase.Test();
+        test.foo();
     }
 }
