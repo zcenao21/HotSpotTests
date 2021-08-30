@@ -21,8 +21,19 @@ public class GCTests{
     @SuppressWarnings("unused")
     public void testTenuringThreshold(){
         byte[] allocation1,allocation2, allocation3;
-        allocation1=new byte[_1MB/4];
+        allocation1=new byte[_1MB/1024];
         allocation2=new byte[4*_1MB];
+        allocation3=new byte[4*_1MB];
+        allocation3=null;
+        allocation3=new byte[4*_1MB];
+    }
+
+    @Test
+    @SuppressWarnings("unused")
+    public void testTenuringThreshold2(){
+        byte[] allocation1,allocation2, allocation3;
+        allocation1=new byte[_1MB/4];
+        allocation2=new byte[_1MB/4];
         allocation3=new byte[4*_1MB];
         allocation3=null;
         allocation3=new byte[4*_1MB];
