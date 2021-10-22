@@ -1,9 +1,12 @@
 package thread;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 public class WaitTest {
     private static final Object obj = new Object();
+    private static Queue<Integer> q = new LinkedList<>();
     private static Random random = new Random();
     public static void main(String[] args) throws InterruptedException {
         WaitTest test = new WaitTest();
@@ -16,7 +19,9 @@ public class WaitTest {
     public void run() throws InterruptedException {
         while(true){
             synchronized (obj){
-                System.out.println(Thread.currentThread().getName()+" - thread run");
+                q.add(random.nextInt());
+                System.out.println(q);
+                Thread.sleep(1000);
                 obj.notifyAll();
             }
         }
@@ -27,13 +32,14 @@ public class WaitTest {
             public void run() {
                 while(true){
                     synchronized (obj){
-                        System.out.println(Thread.currentThread().getName()+" thread run");
-                        try {
-                            Thread.sleep(random.nextInt(2000));
-                            obj.wait();
-                            System.out.println(Thread.currentThread().getName()+" thread wait stop!");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        if(q.size()<1){
+                            try{
+                                System.out.println(Thread.currentThread().getName()+ " run ");
+                                obj.wait();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                            System.out.println(Thread.currentThread().getName()+ " get " + q.poll());
                         }
                     }
                 }
